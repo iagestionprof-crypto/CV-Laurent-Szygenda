@@ -31,29 +31,29 @@
 
     /* 2. LE CORRECTIF MAGIQUE POUR L'IMPRESSION */
     @media print {
-        @page { margin: 0; size: auto; } /* Supprime les marges blanches du navigateur */
-        
+        @page { margin: 0; size: A4; }
         body { background: none; margin: 0; padding: 0; }
+        .no-print { display: none !important; }
         
         .page { 
             margin: 0 !important; 
-            border: none !important;
-            box-shadow: none !important;
-            width: 210mm !important;
-            height: 297mm !important;
-            page-break-after: always;
+            box-shadow: none !important; 
+            width: 210mm !important; 
+            height: 297mm !important; 
+            -webkit-print-color-adjust: exact !important; 
+            print-color-adjust: exact !important; 
         }
 
-        .no-print { display: none !important; }
-        
-        /* Force la couleur pour le PDF */
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-
-        /* Mode Noir et Blanc */
-        body.print-bw * { color: black !important; border-color: black !important; }
+        /* FORCE LE NOIR ET BLANC TOTAL */
+        body.print-bw, body.print-bw * { 
+            color: #000000 !important; 
+            text-shadow: none !important;
+            background-color: transparent !important;
+            border-color: #000000 !important;
+        }
         body.print-bw .sidebar-bg { display: none !important; }
-        body.print-bw .bg-blue-500, body.print-bw .bg-slate-700 { border: 1px solid black !important; background: none !important; }
+        body.print-bw .section-title { border-bottom: 1px solid #000 !important; color: #000 !important; }
+        body.print-bw i, body.print-bw span { color: #000 !important; }
     }
     </style>
 </head>
@@ -358,6 +358,7 @@ function imprimer(isBW) {
 </body>
 
 </html>
+
 
 
 
