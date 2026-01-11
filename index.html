@@ -36,10 +36,33 @@
     .main { width: 67%; padding-left: 25px; }
     .section-title { border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; color: #1e3a8a; }
 
-    /* BARRES DE COMPÉTENCES (Forcer l'impression) */
-    .skill-bar-bg { background: #334155 !important; height: 4px; width: 100%; border-radius: 2px; }
-    .skill-bar-fill { background: #3b82f6 !important; height: 4px; border-radius: 2px; border: 1px solid #3b82f6; }
+   /* BARRES DE COMPÉTENCES : Force l'affichage par des bordures */
+    .skill-bar-bg { 
+        background: #334155 !important; 
+        height: 6px; 
+        width: 100%; 
+        border-radius: 3px;
+        border-bottom: 2px solid #334155; /* Force l'affichage de la base */
+    }
+    
+    .skill-bar-fill { 
+        background: #3b82f6 !important; 
+        height: 6px; 
+        border-radius: 3px; 
+        /* LE SECRET : On utilise une bordure solide pour la couleur */
+        border-top: 6px solid #3b82f6; 
+        display: block;
+    }
 
+    /* Ajustement Sidebar pour forcer le bleu */
+    .sidebar-bg { 
+        position: absolute; 
+        top: 0; left: 0; bottom: 0; 
+        width: 33%; 
+        background-color: #1e293b !important;
+        border-right: 70mm solid #1e293b; /* Utilise une bordure de droite massive */
+        z-index: 0; 
+    }
     @media print {
         @page { margin: 0; size: A4; }
         body { background: none; margin: 0; padding: 0; }
@@ -98,15 +121,21 @@
                     <div class="space-y-3">
                         <div>
                             <p class="text-[12px] text-slate-400 uppercase font-bold">Vibe Coding</p>
-                            <div class="w-full bg-slate-700 h-1.5 rounded-full mt-1"><div class="bg-blue-500 h-1.5 rounded-full" style="width: 95%"></div></div>
+                            <div class="skill-bar-bg mt-1">
+    <div class="skill-bar-fill" style="width: 95%"></div>
+</div>
                         </div>
                         <div>
                             <p class="text-[12px] text-slate-400 uppercase font-bold">Ide / Vitest / React / JSX</p>
-                            <div class="w-full bg-slate-700 h-1.5 rounded-full mt-1"><div class="bg-blue-500 h-1.5 rounded-full" style="width: 85%"></div></div>
+                           <div class="skill-bar-bg mt-1">
+    <div class="skill-bar-fill" style="width: 95"></div>
+</div>
                         </div>
                         <div>
                             <p class="text-[12px] text-slate-400 uppercase font-bold">Architecte MCP</p>
-                            <div class="w-full bg-slate-700 h-1.5 rounded-full mt-1"><div class="bg-blue-500 h-1.5 rounded-full" style="width: 90%"></div></div>
+                           <div class="skill-bar-bg mt-1">
+    <div class="skill-bar-fill" style="width: 80%"></div>
+</div>
                         </div>
                     </div>
                 </section>
@@ -360,6 +389,7 @@ function imprimer(isBW) {
 </body>
 
 </html>
+
 
 
 
