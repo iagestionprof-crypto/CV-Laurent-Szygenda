@@ -6,58 +6,56 @@
     <title>CV Laurent Szygenda - Directeur Industriel & Expert IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <style>
+   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     
+    /* 1. Reset pour l'affichage écran */
     body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; margin: 0; padding: 0; }
 
     .page { 
         background: white; 
         width: 210mm; 
-        height: 297mm; 
-        padding: 0; /* On gère le padding à l'intérieur pour plus de précision */
+        height: 297mm; /* Taille A4 exacte */
+        padding: 10mm; /* Réduit pour donner plus de place au texte */
         margin: 20px auto; 
         position: relative; 
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
+        overflow: hidden; /* Empêche physiquement la création d'une page 3 */
     }
 
-    /* ASTUCE : Utilisation d'une bordure pour forcer la couleur à l'impression */
-    .sidebar-bg { 
-        position: absolute; 
-        top: 0; left: 0; bottom: 0; 
-        width: 33%; 
-        border-left: 70mm solid #1e293b; /* La bordure s'imprime TOUJOURS */
-        z-index: 0; 
-    }
-
-    .content-wrapper { position: relative; z-index: 10; display: flex; height: 100%; padding: 15mm; }
+    .sidebar-bg { position: absolute; top: 0; left: 0; bottom: 0; width: 33%; background: #1e293b; z-index: 0; }
+    .content-wrapper { position: relative; z-index: 10; display: flex; height: 100%; }
     .sidebar { width: 33%; color: white; padding-right: 15px; }
-    .main { width: 67%; padding-left: 25px; }
-    .section-title { border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; color: #1e3a8a; }
+    .main { width: 67%; padding-left: 20px; }
+    .section-title { border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; color: #1e3a8a; }
 
-    /* BARRES DE COMPÉTENCES (Forcer l'impression) */
-    .skill-bar-bg { background: #334155 !important; height: 4px; width: 100%; border-radius: 2px; }
-    .skill-bar-fill { background: #3b82f6 !important; height: 4px; border-radius: 2px; border: 1px solid #3b82f6; }
-
+    /* 2. LE CORRECTIF MAGIQUE POUR L'IMPRESSION */
     @media print {
         @page { margin: 0; size: A4; }
         body { background: none; margin: 0; padding: 0; }
         .no-print { display: none !important; }
-        .page { margin: 0 !important; box-shadow: none !important; width: 210mm !important; height: 297mm !important; }
-
-        /* MODE NOIR ET BLANC TOTAL */
-        body.print-bw, body.print-bw * { 
-            color: black !important; 
-            fill: black !important;
-            border-color: black !important;
-            background: none !important;
-            box-shadow: none !important;
+        
+        .page { 
+            margin: 0 !important; 
+            box-shadow: none !important; 
+            width: 210mm !important; 
+            height: 297mm !important; 
+            -webkit-print-color-adjust: exact !important; 
+            print-color-adjust: exact !important; 
         }
-        body.print-bw .sidebar-bg { border-left: 0 !important; }
-        body.print-bw .skill-bar-fill { border: 1px solid black !important; background: black !important; }
+
+        /* FORCE LE NOIR ET BLANC TOTAL */
+        body.print-bw, body.print-bw * { 
+            color: #000000 !important; 
+            text-shadow: none !important;
+            background-color: transparent !important;
+            border-color: #000000 !important;
+        }
+        body.print-bw .sidebar-bg { display: none !important; }
+        body.print-bw .section-title { border-bottom: 1px solid #000 !important; color: #000 !important; }
+        body.print-bw i, body.print-bw span { color: #000 !important; }
     }
-</style>
+    </style>
 </head>
 <body>
 
@@ -360,9 +358,6 @@ function imprimer(isBW) {
 </body>
 
 </html>
-
-
-
 
 
 
