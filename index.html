@@ -6,38 +6,56 @@
     <title>CV Laurent Szygenda - Directeur Industriel & Expert IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
+   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; }
-.page { 
-    background: white; 
-    width: 210mm; 
-    min-height: 296mm; 
-    padding: 15mm; 
-    margin: 10px auto; 
-    position: relative; 
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
+    
+    /* 1. Reset pour l'affichage écran */
+    body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; color: #1e293b; margin: 0; padding: 0; }
+
+    .page { 
+        background: white; 
+        width: 210mm; 
+        height: 297mm; /* Taille A4 exacte */
+        padding: 10mm; /* Réduit pour donner plus de place au texte */
+        margin: 20px auto; 
+        position: relative; 
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* Empêche physiquement la création d'une page 3 */
+    }
+
     .sidebar-bg { position: absolute; top: 0; left: 0; bottom: 0; width: 33%; background: #1e293b; z-index: 0; }
     .content-wrapper { position: relative; z-index: 10; display: flex; height: 100%; }
-    .sidebar { width: 33%; color: white; padding-right: 20px; }
-    .main { width: 67%; padding-left: 30px; }
-    .section-title { border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.85rem; color: #1e3a8a; }
-    @page {
-        margin: 0;
-    }
+    .sidebar { width: 33%; color: white; padding-right: 15px; }
+    .main { width: 67%; padding-left: 20px; }
+    .section-title { border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; color: #1e3a8a; }
+
+    /* 2. LE CORRECTIF MAGIQUE POUR L'IMPRESSION */
     @media print {
-        .no-print { display: none !important; }
-        body { background: none; }
-        .page { margin: 0; box-shadow: none; width: 100%; height: auto; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        @page { margin: 0; size: auto; } /* Supprime les marges blanches du navigateur */
         
-        /* Configuration NOIR ET BLANC (activée par JavaScript) */
+        body { background: none; margin: 0; padding: 0; }
+        
+        .page { 
+            margin: 0 !important; 
+            border: none !important;
+            box-shadow: none !important;
+            width: 210mm !important;
+            height: 297mm !important;
+            page-break-after: always;
+        }
+
+        .no-print { display: none !important; }
+        
+        /* Force la couleur pour le PDF */
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+
+        /* Mode Noir et Blanc */
         body.print-bw * { color: black !important; border-color: black !important; }
         body.print-bw .sidebar-bg { display: none !important; }
         body.print-bw .bg-blue-500, body.print-bw .bg-slate-700 { border: 1px solid black !important; background: none !important; }
-        body.print-bw .text-blue-400, body.print-bw .text-blue-600 { color: black !important; }
     }
-</style>
+    </style>
 </head>
 <body>
 
@@ -340,5 +358,6 @@ function imprimer(isBW) {
 </body>
 
 </html>
+
 
 
