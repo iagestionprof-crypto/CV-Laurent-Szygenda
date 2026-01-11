@@ -29,6 +29,9 @@
     .main { width: 67%; padding-left: 20px; }
     .section-title { border-bottom: 2px solid #3b82f6; padding-bottom: 4px; margin-bottom: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; color: #1e3a8a; }
 
+/* Indicateur de page discret */
+        .page-number { position: absolute; bottom: 10mm; right: 10mm; font-size: 10px; color: #94a3b8; }
+
     /* 2. LE CORRECTIF MAGIQUE POUR L'IMPRESSION */
     @media print {
         @page { margin: 0; size: A4; }
@@ -54,6 +57,13 @@
         body.print-bw .sidebar-bg { display: none !important; }
         body.print-bw .section-title { border-bottom: 1px solid #000 !important; color: #000 !important; }
         body.print-bw i, body.print-bw span { color: #000 !important; }
+}
+
+@media print {
+    .footer-text {
+        color: #64748b !important; /* Un peu plus foncé pour l'impression */
+    }
+}
     }
     </style>
 </head>
@@ -194,6 +204,7 @@
                 </section>
             </main>
         </div>
+<div class="page-number">Page 1 / 2</div>
     </div>
 
     <!-- PAGE 2 -->
@@ -331,6 +342,7 @@
                 </footer>
             </main>
         </div>
+<div class="page-number">Page 2 / 2</div>
     </div>
 
     <!-- BOUTON PRINT -->
